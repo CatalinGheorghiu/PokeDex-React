@@ -4,16 +4,24 @@ import PokemonGrid           from "./components/PokemonGrid";
 
 const App = () => {
 	const [pokemons, setPokemons] = useState("");
+	// eslint-disable-next-line no-unused-vars
 	const [showPokemons, setShowPokemons] = useState(false);
 	const [showButtons, setShowButtons] = useState(true);
+	// eslint-disable-next-line no-unused-vars
 	const [showNavbar, setShowNavbar] = useState(true);
 	
 	const hideButtons = () => {
 		setShowPokemons(true);
 		setShowButtons(false);
 		setShowNavbar(false);
-		console.log(pokemons);
 	};
+	
+	const displayButtons = () => {
+		setShowPokemons(false);
+		setShowButtons(true);
+		setShowNavbar(true);
+	};
+	
 	
 	useEffect(() => {
 		fetch("https://pokeapi.co/api/v2/pokemon/?limit=20")
@@ -27,13 +35,14 @@ const App = () => {
 	return (
 		<>
 			{/*<Navbar hideButtons={hideButtons}/>*/}
-			<Navbar/>
+			<Navbar showNavbar={showNavbar} displayButtons={displayButtons}/>
 			<main className="w-5/6 h-3/4 mx-auto">
 				
 				
 				{/*{showPokemons && <PokemonGrid pokemons={pokemons}/>}*/}
 				<PokemonGrid pokemons={pokemons} hideButtons={hideButtons}
-				             showButtons={showButtons}/>
+				             showButtons={showButtons}
+				             displayButtons={displayButtons}/>
 			</main>
 		</>
 	);

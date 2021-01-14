@@ -1,9 +1,10 @@
-const Pokemon = () => {
-	
+const Pokemon = ({pokemons}) => {
+	console.log(pokemons);
 	return (
-		<div className="text-red-900">
-		
-		</div>
+		<>
+			
+			{pokemons.map((pokemon,index) => (<p key={index}>{pokemon.name}</p>))}
+		</>
 	);
 };
 

@@ -1,4 +1,4 @@
-const Navbar = ({handleClick}) => {
+const Navbar = ({handleClick, showNavbar, displayButtons}) => {
 	
 	
 	const handleSubmit = (event) => {
@@ -24,7 +24,9 @@ const Navbar = ({handleClick}) => {
 				       className="w-full outline-none px-3 bg-white "
 				       placeholder="Search Pokemon..."/>
 			</div>
-		
+			{!showNavbar && <button
+				className="border focus:outline-none hover:bg-blue-500 hover:text-white w-full p-1.5 my-5 rounded-2"
+				onClick={displayButtons}>Back</button>}
 		
 		</header>
 	);
