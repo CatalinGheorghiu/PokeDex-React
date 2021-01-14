@@ -3,11 +3,16 @@ import Navbar                from "./components/Navbar";
 import PokemonGrid           from "./components/PokemonGrid";
 
 const App = () => {
-	const [pokemons, setPokemons] = useState(null);
-	const [visibility, setVisibility] = useState(false);
+	const [pokemons, setPokemons] = useState("");
+	const [showPokemons, setShowPokemons] = useState(false);
+	const [showButtons, setShowButtons] = useState(true);
+	const [showNavbar, setShowNavbar] = useState(true);
 	
-	const handleClick = () => {
-		setVisibility(true);
+	const hideButtons = () => {
+		setShowPokemons(true);
+		setShowButtons(false);
+		setShowNavbar(false);
+		console.log(pokemons);
 	};
 	
 	useEffect(() => {
@@ -21,9 +26,14 @@ const App = () => {
 	
 	return (
 		<>
-			<Navbar handleClick={handleClick}/>
-			<main>
-				{visibility && <PokemonGrid pokemons={pokemons}/>}
+			{/*<Navbar hideButtons={hideButtons}/>*/}
+			<Navbar/>
+			<main className="w-5/6 h-3/4 mx-auto">
+				
+				
+				{/*{showPokemons && <PokemonGrid pokemons={pokemons}/>}*/}
+				<PokemonGrid pokemons={pokemons} hideButtons={hideButtons}
+				             showButtons={showButtons}/>
 			</main>
 		</>
 	);
