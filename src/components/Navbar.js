@@ -1,9 +1,37 @@
-const Navbar = ({handleClick, showNavbar, displayButtons}) => {
+import {useState} from "react";
+import Select     from "react-select-virtualized";
+
+const Navbar = ({
+	                handleClick,
+	                showNavbar,
+	                displayButtons,
+	                hidePokemonGrid,
+	                pokemons,
+	                allPokemons
+                }) => {
+	
+	const [selectedPokemon, setSelectedPokemon] = useState();
+	
+	const options = allPokemons.map(pokemon => ({
+		value: pokemon.name,
+		label: pokemon.name
+	}));
 	
 	
-	const handleSubmit = (event) => {
-		console.log(event.target.value);
+	const style = {
+		control: base => ({
+			...base,
+			border: 0,
+			// This line disable the blue border
+			boxShadow: "none",
+		}),
+		
 	};
+	
+	// const handleChange = (event) => {
+	//
+	// };
+	
 	
 	return (
 		<header className="w-5/6 mx-auto">
@@ -19,10 +47,20 @@ const Navbar = ({handleClick, showNavbar, displayButtons}) => {
 				        className="px-2 focus:outline-none">
 					<i className="fas fa-search"/>
 				</button>
-				<input type="text"
-				       onChange={handleSubmit}
-				       className="w-full outline-none px-3 bg-white "
-				       placeholder="Search Pokemon..."/>
+				
+				
+				<Select
+					options={options}
+					styles={style}
+					components={{
+						DropdownIndicator: () => null,
+						IndicatorSeparator: () => null
+					}}
+					openMenuOnFocus={false}
+					openMenuOnClick={false}
+					onChange={hidePokemonGrid}
+					className="w-full"
+					placeholder="Search Pokemon..."/>
 			</div>
 			{!showNavbar && <button
 				className="border focus:outline-none hover:bg-blue-500 hover:text-white w-full p-1.5 my-5 rounded-2"

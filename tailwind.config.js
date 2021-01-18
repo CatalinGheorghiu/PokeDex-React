@@ -15,10 +15,34 @@ module.exports = {
 		}, borderRadius: {
 			"1": "12px",
 			"2": "14px",
-		},
+			"full": "50%"
+		}, backgroundColor: theme => ({
+			...theme("colors"),
+			"fire": "#F87F3D",
+			"ice": "#90D8D8",
+			"grass": "#6AC85C",
+			"electric": "#FBCF4A",
+			"water": "#6591EB",
+			"ground": "#FBCF4A",
+			"rock": "#BA9F45",
+			"fairy": "#F5B6BC",
+			"poison": "#A7409D",
+			"bug": "#A5B83A",
+			"dragon": "#773BF2",
+			"psychic": "#6591EB",
+			"flying": "#3dc7ef",
+			"fighting": "#FBCF4A",
+			"ghost": "#735895",
+			"steel": "#B8B8CF",
+			"dark": "#773BF2",
+			"normal": "#A8A87C"
+		}),
 		extend: {
 			backgroundImage: theme => ({
 				"poke": "url('./img/poke.png')",
+				"loader": "url('./img/loader.gif')",
+				"cogs": "url('./img/cogs.gif')",
+				"pika": "url('./img/loading-pika.gif')",
 			})
 		},
 	},
