@@ -1,5 +1,4 @@
-import {useState} from "react";
-import Select     from "react-select-virtualized";
+import Select from "react-select-virtualized";
 
 const Navbar = ({
 	                handleClick,
@@ -10,7 +9,7 @@ const Navbar = ({
 	                allPokemons
                 }) => {
 	
-	const [selectedPokemon, setSelectedPokemon] = useState();
+	// const [selectedPokemon, setSelectedPokemon] = useState();
 	
 	const options = allPokemons.map(pokemon => ({
 		value: pokemon.name,
