@@ -4,15 +4,16 @@ import PokemonGrid           from "./components/PokemonGrid";
 import Loading               from "./components/Loading";
 
 const App = () => {
-	const [pokemons, setPokemons] = useState("");
+	const [pokemons, setPokemons] = useState([]);
 	const [allPokemons, setAllPokemons] = useState("");
 	const [showPokemons, setShowPokemons] = useState(false);
 	const [showButtons, setShowButtons] = useState(true);
 	const [showNavbar, setShowNavbar] = useState(true);
 	const [pokemonDetails, setPokemonDetails] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [offset, setOffset] = useState(0);
 	
-
+	
 	const hideButtons = () => {
 		setLoading(true);
 		setTimeout(() => {
@@ -39,6 +40,20 @@ const App = () => {
 		return await results.json();
 	};
 	
+	const handleScroll = () => {
+		if (
+			window.innerHeight + document.documentElement.scrollTop !==
+			document.documentElement.offsetHeight
+		)
+			return;
+		setOffset(prev => prev + 20);
+		
+	};
+	
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 	
 	useEffect(() => {
 		(async () => {
@@ -55,14 +70,18 @@ const App = () => {
 	}, []);
 	
 	useEffect(() => {
-		fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20")
-		.then(r => r.json())
-		.then(async data => {
-			const rez = await Promise.all(data.results.map((details) => fetchPokemonDetails(details.url)));
-			setPokemons(data.results);
-			setPokemonDetails(rez);
-		});
-	}, []);
+		(async () => {
+			try {
+				const res = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`);
+				const {results} = await res.json();
+				const rez = await Promise.all(results.map((details) => fetchPokemonDetails(details.url)));
+				setPokemons(prev => [...prev, ...results]);
+				await setPokemonDetails(prev => [...prev, ...rez]);
+			} catch (e) {
+				
+			}
+		})();
+	}, [offset]);
 	
 	
 	return (
@@ -84,7 +103,8 @@ const App = () => {
 					             displayButtons={displayButtons}
 					             showPokemons={showPokemons}
 					             pokemonDetails={pokemonDetails}
-					             loading={loading}/>}
+					             loading={loading}
+					/>}
 			</main>
 		</>
 	);
