@@ -13,65 +13,65 @@ const Pokemon = ({pokemons, pokemonDetails, loading}) => {
 	};
 	
 	const selectColor = (arr) => {
-		let color = "normal";
+		let color = "bg-normal";
 		
 		const filteredColor = arr.filter(item => item.type.name !== "normal").map(item => item.type.name).slice(0, 1).join();
 		switch (filteredColor) {
 			case "fire":
-				color = "fire";
+				color = "bg-fire";
 				break;
 			case "ice":
-				color = "ice";
+				color = "bg-ice";
 				break;
 			case "grass":
-				color = "grass";
+				color = "bg-grass";
 				break;
 			case "electric":
-				color = "electric";
+				color = "bg-electric";
 				break;
 			case "water":
-				color = "water";
+				color = "bg-water";
 				break;
 			case "ground":
-				color = "ground";
+				color = "bg-ground";
 				break;
 			case "rock":
-				color = "rock";
+				color = "bg-rock";
 				break;
 			case "fairy":
-				color = "fairy";
+				color = "bg-fairy";
 				break;
 			case "poison":
-				color = "poison";
+				color = "bg-poison";
 				break;
 			case "bug":
-				color = "bug";
+				color = "bg-bug";
 				break;
 			case "dragon":
-				color = "dragon";
+				color = "bg-dragon";
 				break;
 			case "psychic":
-				color = "psychic";
+				color = "bg-psychic";
 				break;
 			case "flying":
-				color = "flying";
+				color = "bg-flying";
 				break;
 			case "fighting":
-				color = "fighting";
+				color = "bg-fighting";
 				break;
 			case "ghost":
-				color = "ghost";
+				color = "bg-ghost";
 				break;
 			case "steel":
-				color = "steel";
+				color = "bg-steel";
 				break;
 			case "dark":
-				color = "dark";
+				color = "bg-dark";
 				break;
 			default:
 				return color;
 		}
-		return filteredColor;
+		return color;
 	};
 	
 	const backgroundImage = (item) => {
@@ -89,7 +89,7 @@ const Pokemon = ({pokemons, pokemonDetails, loading}) => {
 				{pokemons.map((pokemon, index) => (
 						
 						<div key={uuidv4()} data-id={index + 1}
-						     className={`bg-${selectColor(pokemonDetails[index].types)} border w-48 m-3 p-3 rounded-2 cursor-pointer`}>
+						     className={`${selectColor(pokemonDetails[index].types)} border w-48 m-3 p-3 rounded-2 cursor-pointer`}>
 							<div
 								className="flex justify-between text-white font-bold">
 								<h3>{uppercaseFirstLetter(pokemon.name)}</h3>
