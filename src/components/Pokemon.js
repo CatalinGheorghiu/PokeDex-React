@@ -1,7 +1,7 @@
 import {v4 as uuidv4} from "uuid";
 
-const Pokemon = ({pokemons, pokemonDetails, loading}) => {
-	// console.log(pokemonDetails);//sprites.other["official-artwork"]["front_default"]
+const Pokemon = ({pokemonDetails, loading}) => {
+	console.log(pokemonDetails);//sprites.other["official-artwork"]["front_default"]
 	
 	
 	const uppercaseFirstLetter = (word) => {
@@ -15,7 +15,8 @@ const Pokemon = ({pokemons, pokemonDetails, loading}) => {
 	const selectColor = (arr) => {
 		let color = "bg-normal";
 		
-		const filteredColor = arr.filter(item => item.type.name !== "normal").map(item => item.type.name).slice(0, 1).join();
+		const filteredColor = arr.types.filter(item => item.type.name !== "normal").map(item => item.type.name).slice(0, 1).join();
+		
 		switch (filteredColor) {
 			case "fire":
 				color = "bg-fire";
@@ -85,19 +86,19 @@ const Pokemon = ({pokemons, pokemonDetails, loading}) => {
 	
 	return (
 		<div className="flex flex-col mb-7">
-			<div className="flex flex-wrap justify-between mx-auto  w-full">
-				{pokemons.map((pokemon, index) => (
+			<div className="flex flex-wrap  mx-auto  w-full">
+				{pokemonDetails.map((pokemon, index) => (
 						
 						<div key={uuidv4()} data-id={index + 1}
-						     className={`${selectColor(pokemonDetails[index].types)} border w-48 m-3 p-3 rounded-2 cursor-pointer`}>
+						     className={`${selectColor(pokemon)} border w-48 m-3 p-3 rounded-2 cursor-pointer`}>
 							<div
 								className="flex justify-between text-white font-bold">
 								<h3>{uppercaseFirstLetter(pokemon.name)}</h3>
-								<p>#{zeroPad(pokemonDetails[index].id)}</p>
+								<p>#{zeroPad(pokemon.id)}</p>
 							</div>
 							
 							<div className="flex flex-row justify-between m-2">
-								{pokemonDetails[index].types.map(type => type.type.name !== "normal" ? (
+								{pokemon.types.map(type => type.type.name !== "normal" ? (
 									<p className="bg-white bg-opacity-25 rounded-2 text-center  px-2"
 									   key={uuidv4()}>{type.type.name} </p>) : "")}
 							</div>
@@ -106,7 +107,7 @@ const Pokemon = ({pokemons, pokemonDetails, loading}) => {
 								className="bg-white bg-opacity-50 rounded-full  relative">
 								
 								<img
-									src={backgroundImage(pokemonDetails[index])}
+									src={backgroundImage(pokemon)}
 									alt={`${pokemon.name}`}/>
 							</div>
 						</div>

@@ -5,7 +5,6 @@ const Navbar = ({
 	                showNavbar,
 	                displayButtons,
 	                hidePokemonGrid,
-	                pokemons,
 	                allPokemons
                 }) => {
 	

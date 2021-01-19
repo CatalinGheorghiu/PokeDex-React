@@ -2,7 +2,7 @@ import ButtonList from "./ButtonList";
 import Pokemon    from "./Pokemon";
 
 const PokemonGrid = ({
-	                     pokemons,
+
 	                     hideButtons,
 	                     displayButtons,
 	                     showButtons,
@@ -15,7 +15,7 @@ const PokemonGrid = ({
 	return (
 		<>
 			{showButtons ? <ButtonList hideButtons={hideButtons}/> :
-				<Pokemon pokemons={pokemons} displayButtons={displayButtons}
+				<Pokemon  displayButtons={displayButtons}
 				         pokemonDetails={pokemonDetails} loading={loading}/>}
 		
 		</>
