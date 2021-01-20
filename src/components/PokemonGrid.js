@@ -1,26 +1,32 @@
-import ButtonList from "./ButtonList";
-import Pokemon    from "./Pokemon";
+import Pokemon        from "./Pokemon";
+import PokemonDetails from "./PokemonDetails";
 
 const PokemonGrid = ({
-
-	                     hideButtons,
+	                     showSortedPokemon,
+	                     sortedPokemonDetails,
 	                     displayButtons,
 	                     showButtons,
 	                     pokemonDetails,
+	                     loadingPokemons,
 	                     loading
                      }) => {
 	
 	
-	
 	return (
 		<>
-			{showButtons ? <ButtonList hideButtons={hideButtons}/> :
-				<Pokemon  displayButtons={displayButtons}
-				         pokemonDetails={pokemonDetails} loading={loading}/>}
+			
+			{showSortedPokemon && true &&
+			<PokemonDetails sortedPokemonDetails={sortedPokemonDetails}/>}
+			
+			{!showButtons &&
+			<Pokemon displayButtons={displayButtons}
+			         pokemonDetails={pokemonDetails} loading={loading}
+			         loadingPokemons={loadingPokemons}/>}
 		
 		</>
 	
 	);
 };
+
 
 export default PokemonGrid;

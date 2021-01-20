@@ -1,16 +1,14 @@
 import {v4 as uuidv4} from "uuid";
 
-const Pokemon = ({pokemonDetails, loading}) => {
-	console.log(pokemonDetails);//sprites.other["official-artwork"]["front_default"]
+const Pokemon = ({pokemonDetails, loadingPokemons}) => {
+	//console.log(pokemonDetails);//sprites.other["official-artwork"]["front_default"]
 	
 	
 	const uppercaseFirstLetter = (word) => {
 		return word.charAt(0).toUpperCase() + word.slice(1);
 	};
 	
-	const zeroPad = (num) => {
-		return num.toString().padStart(3, "0");
-	};
+	const zeroPad = (num) => num.toString().padStart(3, "0");
 	
 	const selectColor = (arr) => {
 		let color = "bg-normal";
@@ -86,7 +84,7 @@ const Pokemon = ({pokemonDetails, loading}) => {
 	
 	return (
 		<div className="flex flex-col mb-7">
-			<div className="flex flex-wrap  mx-auto  w-full">
+			<div className="flex flex-wrap justify-center  mx-auto  w-full">
 				{pokemonDetails.map((pokemon, index) => (
 						
 						<div key={uuidv4()} data-id={index + 1}
@@ -113,9 +111,13 @@ const Pokemon = ({pokemonDetails, loading}) => {
 						</div>
 					)
 				)}
+				
+			{loadingPokemons &&
+			<div className="w-full text-center">Loading...</div>}
 			</div>
 		
 		</div>
+	
 	);
 };
 

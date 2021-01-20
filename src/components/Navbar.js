@@ -5,7 +5,9 @@ const Navbar = ({
 	                showNavbar,
 	                displayButtons,
 	                hidePokemonGrid,
-	                allPokemons
+	                selectedPokemons,
+	                allPokemons,
+	                hideButtons
                 }) => {
 	
 	// const [selectedPokemon, setSelectedPokemon] = useState();
@@ -26,9 +28,11 @@ const Navbar = ({
 		
 	};
 	
-	// const handleChange = (event) => {
-	//
-	// };
+	
+	const handleChange = (event) => {
+		const [selectedPokemonArr] = allPokemons.filter(pokemon => pokemon.name === event.value);
+		selectedPokemons(selectedPokemonArr.url)
+	};
 	
 	
 	return (
@@ -37,31 +41,43 @@ const Navbar = ({
 			<h1 className=" font-nunito text-3xl py-8 ">What Pokemon are you
 				looking
 				for?</h1>
-			{/*SEARCH BAR*/}
-			<div
-				className="flex border bg-white  rounded-1 focus:outline-none focus:ring-1 focus:border-gray-300 p-2 pl-2 w-full ">
-				<button onClick={handleClick}
-				        type="button"
-				        className="px-2 focus:outline-none">
-					<i className="fas fa-search"/>
-				</button>
-				
-				
-				<Select
-					options={options}
-					styles={style}
-					components={{
-						DropdownIndicator: () => null,
-						IndicatorSeparator: () => null
-					}}
-					openMenuOnFocus={false}
-					openMenuOnClick={false}
-					onChange={hidePokemonGrid}
-					className="w-full"
-					placeholder="Search Pokemon..."/>
-			</div>
+			
+			<ul
+				className="flex flex-col  mt-2">
+				<li className="w-full h-14 bg-green-600 bg-poke bg-left bg-no-repeat bg-cover rounded-1  my-3">
+					<div
+						className="w-full flex border bg-white  rounded-1 focus:outline-none focus:ring-1 focus:border-gray-300 p-2 pl-2 w-full ">
+						<button onClick={handleClick}
+						        type="button"
+						        className="px-2 focus:outline-none">
+							<i className="fas fa-search"/>
+						</button>
+						
+						
+						<Select
+							options={options}
+							styles={style}
+							components={{
+								DropdownIndicator: () => null,
+								IndicatorSeparator: () => null
+							}}
+							openMenuOnFocus={false}
+							openMenuOnClick={false}
+							onChange={handleChange}
+							className="w-full"
+							placeholder="Search Pokemon..."/>
+					</div>
+				</li>
+				{showNavbar && <li
+					className="w-full h-14 bg-green-600 bg-poke bg-center bg-cover rounded-1  ">
+					<button
+						className="w-full h-full border-none  focus:outline-none text-center  text-gray-800 font-extrabold font-extrabold"
+						onClick={hideButtons}>Show All Pokemons
+					</button>
+				</li>}
+			</ul>
 			{!showNavbar && <button
-				className="border focus:outline-none hover:bg-blue-500 hover:text-white w-full p-1.5 my-5 rounded-2"
+				className="w-full h-12 border focus:outline-none hover:bg-blue-500 hover:text-white mb-7  rounded-2"
 				onClick={displayButtons}>Back</button>}
 		
 		</header>
