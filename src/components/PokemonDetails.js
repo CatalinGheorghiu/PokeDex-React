@@ -1,7 +1,7 @@
 import React from "react";
 
 const PokemonDetails = ({sortedPokemonDetails}) => {
-	console.log(sortedPokemonDetails);
+	// console.log(sortedPokemonDetails);
 	return (
 		<div>
 			<div className="flex flex-col mb-7">

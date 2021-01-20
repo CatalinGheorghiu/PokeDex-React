@@ -8,6 +8,7 @@ const PokemonGrid = ({
 	                     showButtons,
 	                     pokemonDetails,
 	                     loadingPokemons,
+	                     allPokemons,
 	                     loading
                      }) => {
 	
@@ -15,13 +16,13 @@ const PokemonGrid = ({
 	return (
 		<>
 			
-			{showSortedPokemon && true &&
+			{showSortedPokemon &&
 			<PokemonDetails sortedPokemonDetails={sortedPokemonDetails}/>}
 			
 			{!showButtons &&
 			<Pokemon displayButtons={displayButtons}
 			         pokemonDetails={pokemonDetails} loading={loading}
-			         loadingPokemons={loadingPokemons}/>}
+			         loadingPokemons={loadingPokemons} allPokemons={allPokemons}/>}
 		
 		</>
 	

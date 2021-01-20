@@ -4,13 +4,11 @@ const Navbar = ({
 	                handleClick,
 	                showNavbar,
 	                displayButtons,
-	                hidePokemonGrid,
 	                selectedPokemons,
 	                allPokemons,
 	                hideButtons
                 }) => {
 	
-	// const [selectedPokemon, setSelectedPokemon] = useState();
 	
 	const options = allPokemons.map(pokemon => ({
 		value: pokemon.name,
@@ -30,8 +28,15 @@ const Navbar = ({
 	
 	
 	const handleChange = (event) => {
-		const [selectedPokemonArr] = allPokemons.filter(pokemon => pokemon.name === event.value);
-		selectedPokemons(selectedPokemonArr.url)
+		console.log(event);
+		if (event !== null) {
+			console.log(event);
+			const [selectedPokemonArr] = allPokemons.filter(pokemon => pokemon.name === event.value);
+			selectedPokemons(selectedPokemonArr.url);
+		} else {
+			selectedPokemons(event);
+		}
+		
 	};
 	
 	
@@ -58,11 +63,12 @@ const Navbar = ({
 							options={options}
 							styles={style}
 							components={{
-								DropdownIndicator: () => null,
+								// DropdownIndicator: () => null,
 								IndicatorSeparator: () => null
 							}}
 							openMenuOnFocus={false}
 							openMenuOnClick={false}
+							isClearable={true}
 							onChange={handleChange}
 							className="w-full"
 							placeholder="Search Pokemon..."/>

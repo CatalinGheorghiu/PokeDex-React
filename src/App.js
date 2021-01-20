@@ -6,19 +6,19 @@ import Loading               from "./components/Loading";
 const App = () => {
 	const [pokemonDetails, setPokemonDetails] = useState([]);
 	const [allPokemons, setAllPokemons] = useState("");
+	
 	const [showPokemons, setShowPokemons] = useState(false);
 	const [showButtons, setShowButtons] = useState(true);
 	const [showNavbar, setShowNavbar] = useState(true);
+	const [showSortedPokemon, setShowSortedPokemon] = useState(false);
+	
 	const [loading, setLoading] = useState(false);
 	const [offset, setOffset] = useState(0);
 	const [loadingPokemons, setLoadingPokemons] = useState(false);
 	
 	const [sortPokemons, setSortPokemons] = useState();
 	const [sortedPokemonDetails, setSortedPokemonDetails] = useState("");
-	const [showSortedPokemon, setShowSortedPokemon] = useState(false);
 	
-	
-	const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 	
 	const hideButtons = () => {
 		setLoading(true);
@@ -46,37 +46,43 @@ const App = () => {
 		return await results.json();
 	};
 	
-	const handleScroll = async () => {
+	const handleScroll = () => {
 		if (
 			window.innerHeight + document.documentElement.scrollTop !==
 			document.documentElement.offsetHeight
 		)
 			return;
-		
 		setLoadingPokemons(true);
-		await wait(3000)
 		setOffset(prev => prev + 20);
 		setLoadingPokemons(false);
 	};
 	
-	const selectedPokemons = (sortPokemons) => {
-		setSortPokemons(sortPokemons);
-		setShowSortedPokemon(true);
+	const selectedPokemon = (sortPokemons) => {
+		if (sortPokemons) {
+			console.log("Showing details");
+			setSortPokemons(sortPokemons);
+			setShowSortedPokemon(true);
+			setSortedPokemonDetails("");
+		} else {
+			console.log("Hiding details");
+			setShowSortedPokemon(false);
+		}
+		
+		
 	};
 	
 	
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, );
+	}, []);
 	
 	useEffect(() => {
 		(async () => {
 			try {
 				const results = await fetch(sortPokemons);
 				const data = await results.json();
-				setSortedPokemonDetails(data)
-				// setAllPokemons(data.results);
+				setSortedPokemonDetails(data);
 			} catch (e) {
 			}
 		})();
@@ -100,10 +106,12 @@ const App = () => {
 	useEffect(() => {
 		(async () => {
 			try {
+				
 				const res = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`);
 				const {results} = await res.json();
 				const rez = await Promise.all(results.map((details) => fetchPokemonDetails(details.url)));
 				setPokemonDetails(prev => [...prev, ...rez]);
+				
 			} catch (e) {
 			}
 			
@@ -114,7 +122,7 @@ const App = () => {
 	return (
 		<>
 			{allPokemons && <Navbar showNavbar={showNavbar}
-			                        selectedPokemons={selectedPokemons}
+			                        selectedPokemons={selectedPokemon}
 			                        hidePokemonGrid={hidePokemonGrid}
 			                        displayButtons={displayButtons}
 			                        allPokemons={allPokemons}
@@ -131,6 +139,7 @@ const App = () => {
 						displayButtons={displayButtons}
 						showPokemons={showPokemons}
 						pokemonDetails={pokemonDetails}
+						allPokemons={allPokemons}
 						loading={loading}
 						loadingPokemons={loadingPokemons}
 					/>}
