@@ -3,9 +3,10 @@ import PokemonDetails from "./PokemonDetails";
 
 const PokemonGrid = ({
 	                     showSortedPokemon,
+	                     hidePokemonGrid,
+	                     showPokemons,
 	                     sortedPokemonDetails,
 	                     displayButtons,
-	                     showButtons,
 	                     pokemonDetails,
 	                     loadingPokemons,
 	                     allPokemons,
@@ -19,7 +20,7 @@ const PokemonGrid = ({
 			{showSortedPokemon &&
 			<PokemonDetails sortedPokemonDetails={sortedPokemonDetails}/>}
 			
-			{!showButtons &&
+			{showPokemons &&
 			<Pokemon displayButtons={displayButtons}
 			         pokemonDetails={pokemonDetails} loading={loading}
 			         loadingPokemons={loadingPokemons} allPokemons={allPokemons}/>}

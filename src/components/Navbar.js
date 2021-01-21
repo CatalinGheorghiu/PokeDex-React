@@ -28,9 +28,7 @@ const Navbar = ({
 	
 	
 	const handleChange = (event) => {
-		console.log(event);
 		if (event !== null) {
-			console.log(event);
 			const [selectedPokemonArr] = allPokemons.filter(pokemon => pokemon.name === event.value);
 			selectedPokemons(selectedPokemonArr.url);
 		} else {
@@ -38,6 +36,7 @@ const Navbar = ({
 		}
 		
 	};
+
 	
 	
 	return (
@@ -68,8 +67,9 @@ const Navbar = ({
 							}}
 							openMenuOnFocus={false}
 							openMenuOnClick={false}
-							isClearable={true}
+							// isClearable={true}
 							onChange={handleChange}
+							onSelectResetsInput={true}
 							className="w-full"
 							placeholder="Search Pokemon..."/>
 					</div>

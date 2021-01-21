@@ -7,7 +7,7 @@ const ButtonList = ({hideButtons}) => {
 				className=" flex flex-wrap justify-between content-center mt-24">
 				<li className="w-48 h-14 bg-green-600 bg-poke bg-left bg-no-repeat bg-cover rounded-1  my-3">
 					<button
-						className="px-3 w-full h-full border-none  focus:outline-none text-left  text-white font-extrabold font-extrabold"
+						className="px-3 w-full  h-full border-none  focus:outline-none text-left  text-white font-extrabold font-extrabold"
 						onClick={hideButtons}>Pokedex
 					</button>
 				</li>

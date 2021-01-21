@@ -13,6 +13,7 @@ module.exports = {
 			"3": "18rem",
 			"4": "24rem",
 		}, borderRadius: {
+			"1/2": "6px",
 			"1": "12px",
 			"2": "14px",
 			"full": "50%"

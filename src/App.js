@@ -4,13 +4,13 @@ import PokemonGrid           from "./components/PokemonGrid";
 import Loading               from "./components/Loading";
 
 const App = () => {
+	
 	const [pokemonDetails, setPokemonDetails] = useState([]);
 	const [allPokemons, setAllPokemons] = useState("");
 	
 	const [showPokemons, setShowPokemons] = useState(false);
-	const [showButtons, setShowButtons] = useState(true);
-	const [showNavbar, setShowNavbar] = useState(true);
 	const [showSortedPokemon, setShowSortedPokemon] = useState(false);
+	const [showNavbar, setShowNavbar] = useState(true);
 	
 	const [loading, setLoading] = useState(false);
 	const [offset, setOffset] = useState(0);
@@ -20,24 +20,22 @@ const App = () => {
 	const [sortedPokemonDetails, setSortedPokemonDetails] = useState("");
 	
 	
-	const hideButtons = () => {
+	const showAllPokemons = () => {
 		setLoading(true);
 		setTimeout(() => {
+			setShowSortedPokemon(false);
 			setShowPokemons(true);
-			setShowButtons(false);
+
 			setShowNavbar(false);
 			setLoading(false);
 		}, 1500);
 	};
 	
-	const hidePokemonGrid = () => {
-		setShowPokemons(false);
-		setShowButtons(false);
-	};
 	
 	const displayButtons = () => {
 		setShowPokemons(false);
-		setShowButtons(true);
+		setShowSortedPokemon(false);
+
 		setShowNavbar(true);
 	};
 	
@@ -45,6 +43,8 @@ const App = () => {
 		const results = await fetch(url);
 		return await results.json();
 	};
+	
+	
 	
 	const handleScroll = () => {
 		if (
@@ -58,17 +58,17 @@ const App = () => {
 	};
 	
 	const selectedPokemon = (sortPokemons) => {
-		if (sortPokemons) {
-			console.log("Showing details");
+		if (sortPokemons !== null) {
 			setSortPokemons(sortPokemons);
-			setShowSortedPokemon(true);
-			setSortedPokemonDetails("");
-		} else {
-			console.log("Hiding details");
+			setTimeout(() => {
+				setShowSortedPokemon(true);
+			}, 100);
+			
+			setShowPokemons(false);
+		} else if (showPokemons === false) {
 			setShowSortedPokemon(false);
+			setShowPokemons(false);
 		}
-		
-		
 	};
 	
 	
@@ -123,10 +123,9 @@ const App = () => {
 		<>
 			{allPokemons && <Navbar showNavbar={showNavbar}
 			                        selectedPokemons={selectedPokemon}
-			                        hidePokemonGrid={hidePokemonGrid}
 			                        displayButtons={displayButtons}
 			                        allPokemons={allPokemons}
-			                        hideButtons={hideButtons}/>}
+			                        hideButtons={showAllPokemons}/>}
 			
 			<main className="w-5/6 h-full  mx-auto">
 				{loading ? <Loading/> :
@@ -134,8 +133,7 @@ const App = () => {
 						sortedPokemonDetails={sortedPokemonDetails}
 						showSortedPokemon={showSortedPokemon}
 						sortPokemons={sortPokemons}
-						hideButtons={hideButtons}
-						showButtons={showButtons}
+						hideButtons={showAllPokemons}
 						displayButtons={displayButtons}
 						showPokemons={showPokemons}
 						pokemonDetails={pokemonDetails}
