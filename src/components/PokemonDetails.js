@@ -12,10 +12,10 @@ import Stats                 from "./stats/Stats";
 import Evolution             from "./stats/Evolution";
 
 const PokemonDetails = ({sortedPokemonDetails}) => {
-	// console.log(sortedPokemonDetails.species.url);
+	//console.log(sortedPokemonDetails);
 	const [pokemonSpecies, setPokemonSpecies] = useState(null);
 	const [menu, setMenu] = useState("about");
-	console.log(pokemonSpecies);
+	// console.log(pokemonSpecies);
 	
 	useEffect(() => {
 		(async () => {
@@ -32,7 +32,7 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 			<div
 				className=" w-full flex flex-wrap justify-center  ">
 				<div
-					className={`w-full h-auto border my-5 rounded-1 cursor-pointer   ${selectColor(sortedPokemonDetails.types)}`}>
+					className={`w-full h-auto border my-5 rounded-3 rounded-b-2 cursor-pointer   ${selectColor(sortedPokemonDetails.types)}`}>
 					<div
 						className="flex justify-between text-white font-bold  p-3">
 						<h3>{uppercaseFirstLetter(sortedPokemonDetails.name)}</h3>
@@ -56,8 +56,8 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 					</div>
 					
 					<div
-						className="w-full   p-3  bg-white rounded-2 ">
-						<ul className="flex justify-between mb-3">
+						className="w-full   p-3  bg-white rounded-4 rounded-b-2 ">
+						<ul className="flex justify-between mx-1 mb-3">
 							<li>
 								<button
 									onClick={() => setMenu("about")}
@@ -88,8 +88,9 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 							</li>
 						</ul>
 						
-						{menu === "about" &&
-						<About pokemonSpecies={pokemonSpecies}/>}
+						{menu === "about" && pokemonSpecies &&
+						<About pokemonSpecies={pokemonSpecies}
+						       sortedPokemonDetails={sortedPokemonDetails}/>}
 						{menu === "evolution" &&
 						<Evolution pokemonSpecies={pokemonSpecies}/>}
 						{menu === "stats" &&

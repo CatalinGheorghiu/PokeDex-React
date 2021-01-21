@@ -16,7 +16,11 @@ module.exports = {
 			"1/2": "6px",
 			"1": "12px",
 			"2": "14px",
+			"3": "20px",
+			"4": "40px",
 			"full": "50%"
+		}, boxShadow: {
+			"custom1": "0px 0px 31px 12px rgba(0,0,0,0.59)"
 		}, backgroundColor: theme => ({
 			...theme("colors"),
 			"fire": "#F87F3D",

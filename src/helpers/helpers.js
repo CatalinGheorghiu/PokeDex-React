@@ -71,3 +71,17 @@ export const backgroundImage = (item) => {
 };
 
 
+export const calculateWeight = (weight) => weight / 10;
+
+export const calculateHeight = (height) => height / 10;
+
+export const kilogramsToLbs = (mass) => (mass * 2.205).toFixed(1);
+
+export const metersToFeets = (length) => {
+	let realfeet = (((length * 10) * 0.393700) / 12);
+	let feet = Math.floor(realfeet);
+	let inches = Math.round((realfeet - feet) * 12);
+	return `${feet}'${inches}"`;
+};
+
+
