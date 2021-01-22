@@ -7,12 +7,11 @@ import {
 	zeroPad
 }                            from "../helpers/helpers";
 import About                 from "./stats/About";
-import Moves                 from "./stats/Moves";
 import Stats                 from "./stats/Stats";
 import Evolution             from "./stats/Evolution";
 
 const PokemonDetails = ({sortedPokemonDetails}) => {
-	//console.log(sortedPokemonDetails);
+	// console.log(sortedPokemonDetails);
 	const [pokemonSpecies, setPokemonSpecies] = useState(null);
 	const [menu, setMenu] = useState("about");
 	// console.log(pokemonSpecies);
@@ -32,7 +31,7 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 			<div
 				className=" w-full flex flex-wrap justify-center  ">
 				<div
-					className={`w-full h-auto border my-5 rounded-3 rounded-b-2 cursor-pointer   ${selectColor(sortedPokemonDetails.types)}`}>
+					className={`w-full h-auto border my-5 rounded-3 rounded-b-2 cursor-pointer   ${selectColor(sortedPokemonDetails.types)} sm:w-3/4 md:w-2/4 xl:w-2/6`}>
 					<div
 						className="flex justify-between text-white font-bold  p-3">
 						<h3>{uppercaseFirstLetter(sortedPokemonDetails.name)}</h3>
@@ -61,13 +60,13 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 							<li>
 								<button
 									onClick={() => setMenu("about")}
-									className=" focus:outline-none p-1"
+									className=" focus:outline-none focus:text-blue-500 focus:underline p-1"
 								>About
 								</button>
 							</li>
 							<li>
 								<button onClick={() => setMenu("stats")}
-								        className=" focus:outline-none p-1 "
+								        className=" focus:outline-none focus:text-blue-500 focus:underline p-1 "
 								>Base
 									Stats
 								</button>
@@ -75,28 +74,31 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 							<li>
 								<button
 									onClick={() => setMenu("evolution")}
-									className=" focus:outline-none p-1 "
+									className=" focus:outline-none focus:text-blue-500 focus:underline p-1 "
 								>Evolution
 								</button>
 							</li>
-							<li>
-								<button
-									onClick={() => setMenu("moves")}
-									className=" focus:outline-none p-1 "
-								>Moves
-								</button>
-							</li>
+							{/*<li>*/}
+							{/*	<button*/}
+							{/*		onClick={() => setMenu("moves")}*/}
+							{/*		className=" focus:outline-none focus:text-blue-500 focus:underline p-1 "*/}
+							{/*	>Moves*/}
+							{/*	</button>*/}
+							{/*</li>*/}
 						</ul>
 						
 						{menu === "about" && pokemonSpecies &&
 						<About pokemonSpecies={pokemonSpecies}
 						       sortedPokemonDetails={sortedPokemonDetails}/>}
-						{menu === "evolution" &&
-						<Evolution pokemonSpecies={pokemonSpecies}/>}
-						{menu === "stats" &&
-						<Stats pokemonSpecies={pokemonSpecies}/>}
-						{menu === "moves" &&
-						<Moves pokemonSpecies={pokemonSpecies}/>}
+						{menu === "evolution" && pokemonSpecies &&
+						<Evolution pokemonSpecies={pokemonSpecies}
+						           sortedPokemonDetails={sortedPokemonDetails}/>}
+						{menu === "stats" && pokemonSpecies &&
+						<Stats pokemonSpecies={pokemonSpecies}
+						       sortedPokemonDetails={sortedPokemonDetails}/>}
+						{/*{menu === "moves" && pokemonSpecies &&*/}
+						{/*<Moves pokemonSpecies={pokemonSpecies}*/}
+						{/*       sortedPokemonDetails={sortedPokemonDetails}/>}*/}
 					
 					
 					</div>

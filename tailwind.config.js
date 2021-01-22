@@ -2,6 +2,14 @@ module.exports = {
 	purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
+		screens: {
+			"xs": "499px",
+			"sm": "640px",
+			"md": "768px",
+			"lg": "1024px",
+			"xl": "1280px",
+			"2xl": "1536px",
+		},
 		fontFamily: {
 			"nunito": ["nunito", "sans-serif"],
 			"MyFont": ["\"My Font\"", "serif"] // Ensure fonts with spaces have " " surrounding it.
@@ -20,7 +28,8 @@ module.exports = {
 			"4": "40px",
 			"full": "50%"
 		}, boxShadow: {
-			"custom1": "0px 0px 31px 12px rgba(0,0,0,0.59)"
+			"custom1": "0px 0px 31px 12px rgba(0,0,0,0.59)",
+			"custom2": "0px 0px 10px 1px rgba(0,0,0,0.81)",
 		}, backgroundColor: theme => ({
 			...theme("colors"),
 			"fire": "#F87F3D",

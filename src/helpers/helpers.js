@@ -62,7 +62,9 @@ export const selectColor = (arr) => {
 	}
 	return color;
 };
+
 export const backgroundImage = (item) => {
+	console.log(item);
 	if (item.sprites.other["official-artwork"]["front_default"] !== null) {
 		return item.sprites.other["official-artwork"]["front_default"];
 	} else {
@@ -84,4 +86,17 @@ export const metersToFeets = (length) => {
 	return `${feet}'${inches}"`;
 };
 
+export const displayStat = (stat) => `${stat / 2.55}%`;
 
+export const calculateTotalStats = (stats) => {
+	let total = 0;
+	for (let i = 0; i < stats.length; i++) {
+		total += stats[i].base_stat;
+	}
+	return total;
+};
+
+export const getIdFromURL = (url) => {
+	let arr = url.split("/").map(item => parseInt(item)).filter(item => (!isNaN(item)));
+	return +arr;
+};

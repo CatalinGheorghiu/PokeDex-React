@@ -25,7 +25,7 @@ const App = () => {
 		setTimeout(() => {
 			setShowSortedPokemon(false);
 			setShowPokemons(true);
-
+			
 			setShowNavbar(false);
 			setLoading(false);
 		}, 1500);
@@ -35,7 +35,7 @@ const App = () => {
 	const displayButtons = () => {
 		setShowPokemons(false);
 		setShowSortedPokemon(false);
-
+		
 		setShowNavbar(true);
 	};
 	
@@ -43,7 +43,6 @@ const App = () => {
 		const results = await fetch(url);
 		return await results.json();
 	};
-	
 	
 	
 	const handleScroll = () => {
@@ -62,6 +61,7 @@ const App = () => {
 			setSortPokemons(sortPokemons);
 			setTimeout(() => {
 				setShowSortedPokemon(true);
+				setShowNavbar(false);
 			}, 100);
 			
 			setShowPokemons(false);
@@ -71,11 +71,6 @@ const App = () => {
 		}
 	};
 	
-	
-	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
 	
 	useEffect(() => {
 		(async () => {
@@ -130,6 +125,7 @@ const App = () => {
 			<main className="w-5/6 h-full  mx-auto">
 				{loading ? <Loading/> :
 					<PokemonGrid
+						handleScroll={handleScroll}
 						sortedPokemonDetails={sortedPokemonDetails}
 						showSortedPokemon={showSortedPokemon}
 						sortPokemons={sortPokemons}

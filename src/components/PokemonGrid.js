@@ -3,7 +3,7 @@ import PokemonDetails from "./PokemonDetails";
 
 const PokemonGrid = ({
 	                     showSortedPokemon,
-	                     hidePokemonGrid,
+	                     handleScroll,
 	                     showPokemons,
 	                     sortedPokemonDetails,
 	                     displayButtons,
@@ -14,6 +14,8 @@ const PokemonGrid = ({
                      }) => {
 	
 	
+	
+	
 	return (
 		<>
 			
@@ -21,9 +23,11 @@ const PokemonGrid = ({
 			<PokemonDetails sortedPokemonDetails={sortedPokemonDetails}/>}
 			
 			{showPokemons &&
-			<Pokemon displayButtons={displayButtons}
-			         pokemonDetails={pokemonDetails} loading={loading}
-			         loadingPokemons={loadingPokemons} allPokemons={allPokemons}/>}
+			<Pokemon
+				handleScroll={handleScroll}
+				displayButtons={displayButtons}
+				pokemonDetails={pokemonDetails} loading={loading}
+				loadingPokemons={loadingPokemons} allPokemons={allPokemons}/>}
 		
 		</>
 	

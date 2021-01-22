@@ -6,9 +6,8 @@ import {
 } from "../../helpers/helpers";
 
 const About = ({pokemonSpecies, sortedPokemonDetails}) => {
-	console.log(pokemonSpecies);
-	console.log(sortedPokemonDetails);
-	
+	// console.log(pokemonSpecies);
+	// console.log(sortedPokemonDetails);
 	
 	return (
 		<div className="m-3">
@@ -17,7 +16,7 @@ const About = ({pokemonSpecies, sortedPokemonDetails}) => {
 			</div>
 			
 			<div
-				className="flex justify-between mt-3 p-3 shadow-custom1 rounded-2">
+				className="flex justify-between mt-3 p-3 shadow-custom2 rounded-2">
 				<div>
 					<p>Height</p>
 					<p>{calculateHeight(sortedPokemonDetails.height)}m
@@ -29,7 +28,7 @@ const About = ({pokemonSpecies, sortedPokemonDetails}) => {
 					<p>{calculateWeight(sortedPokemonDetails.weight)} kg
 						/ {kilogramsToLbs(calculateWeight(sortedPokemonDetails.weight))} lbs</p>
 				</div>
-				
+			
 			</div>
 			
 			<div className="my-3 p-3">
@@ -45,11 +44,8 @@ const About = ({pokemonSpecies, sortedPokemonDetails}) => {
 						Cicle</p>
 					<p className="font-semibold ">Grass</p>
 				</div>
-			
 			</div>
 		</div>
-	
-	
 	);
 };
 

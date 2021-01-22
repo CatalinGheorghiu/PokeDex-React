@@ -1,3 +1,4 @@
+import {useEffect}    from "react";
 import {v4 as uuidv4} from "uuid";
 import {
 	backgroundImage,
@@ -6,18 +7,30 @@ import {
 	zeroPad
 }                     from "../helpers/helpers";
 
-const Pokemon = ({pokemonDetails, loadingPokemons, allPokemons}) => {
+const Pokemon = ({
+	                 pokemonDetails,
+	                 loadingPokemons,
+	                 allPokemons,
+	                 handleScroll
+                 }) => {
+		
+		useEffect(() => {
+			window.addEventListener("scroll", handleScroll);
+			return () => window.removeEventListener("scroll", handleScroll);
+		}, [handleScroll]);
+		
+		
 		return (
 			<div className="flex flex-col mb-7">
-				<h1 className="text-center text-3xl underline font-extrabold  my-5">Total
+				<h1 className="text-center text-3xl underline font-extrabold  mb-5">Total
 					Pokemons: {allPokemons.length}</h1>
-				<div className="flex flex-wrap justify-center  mx-auto  w-full">
+				<div className="flex flex-wrap justify-between  mx-auto  w-full">
 					{pokemonDetails.map((pokemon, index) => (
 							
 							<div key={uuidv4()} data-id={index + 1}
-							     className={`${selectColor(pokemon.types)} border w-48 m-3 p-3 rounded-2 cursor-pointer`}>
+							     className={`${selectColor(pokemon.types)} border w-full m-3 p-3 rounded-2 cursor-pointer xs:w-5/12 md:w-1/4 lg:w-1/5 xl:w-1/6`}>
 								<div
-									className="flex justify-between text-white font-bold">
+									className="flex justify-between text-white font-bold ">
 									<h3>{uppercaseFirstLetter(pokemon.name)}</h3>
 									<p>#{zeroPad(pokemon.id)}</p>
 								</div>
