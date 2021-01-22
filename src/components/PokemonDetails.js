@@ -18,13 +18,13 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 	
 	useEffect(() => {
 		(async () => {
-		if(sortedPokemonDetails){		
-			const result = await fetch(sortedPokemonDetails.species.url);
-			const data = await result.json();
-			setPokemonSpecies(data);
-	} 
+			if (sortedPokemonDetails) {
+				const result = await fetch(sortedPokemonDetails.species.url);
+				const data = await result.json();
+				setPokemonSpecies(data);
+			}
 		})();
-	}, [sortedPokemonDetails.species.url]);
+	}, [sortedPokemonDetails, sortedPokemonDetails.species.url]);
 	
 	
 	return (
