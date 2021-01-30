@@ -74,9 +74,9 @@ const Navbar = ({
 					</div>
 				</li>
 				{showNavbar && <li
-					className="w-full h-14 bg-green-600 bg-poke bg-center bg-cover rounded-1 my-3 sm:w-1/4 ">
+					className="w-full h-14 bg-green-400 hover:bg-green-600  rounded-1 my-3 sm:w-1/4 ">
 					<button
-						className="w-full h-full border-none  focus:outline-none text-center  text-gray-800 font-extrabold font-extrabold"
+						className="w-full h-full border-none  focus:outline-none text-center text-gray-700 hover:text-white font-extrabold font-extrabold"
 						onClick={hideButtons}>Show All Pokemons
 					</button>
 				</li>}

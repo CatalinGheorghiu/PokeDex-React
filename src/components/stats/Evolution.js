@@ -1,5 +1,5 @@
-import {useEffect, useState}  from "react";
-import {uppercaseFirstLetter,getIdFromURL} from "../../helpers/helpers";
+import {useEffect, useState}                from "react";
+import {getIdFromURL, uppercaseFirstLetter} from "../../helpers/helpers";
 
 const Evolution = ({pokemonSpecies}) => {
 		const [evolution, setEvolution] = useState(null);
@@ -14,7 +14,7 @@ const Evolution = ({pokemonSpecies}) => {
 			})();
 		}, [pokemonSpecies, pokemonSpecies.evolution_chain.url]);
 		
-		
+		console.log(evolution);
 		return (
 			<>
 				{evolution && <div className="py-3">
@@ -38,13 +38,13 @@ const Evolution = ({pokemonSpecies}) => {
 							alt={evolution.chain.evolves_to[0].species.name}
 							className="w-2/6 h-full text-gray-600 font-medium"/>
 					</div>
-					
+					{evolution.chain.evolves_to[0].evolves_to[0] &&
 					<div className="flex justify-between mt-10">
 						<p className="w-5/12 pl-3 text-left text-gray-600 font-medium">{uppercaseFirstLetter(evolution.chain.evolves_to[0].species.name)}</p>
 						<p className="w-5/12 text-center font-semibold">{uppercaseFirstLetter(evolution.chain.evolves_to[0].evolves_to[0].species.name)}</p>
 					</div>
-					
-					
+					}
+					{evolution.chain.evolves_to[0].evolves_to[0] &&
 					<div className="flex justify-between mt-2">
 						<img
 							src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${getIdFromURL(evolution.chain.evolves_to[0].species.url)}.png`}
@@ -60,6 +60,7 @@ const Evolution = ({pokemonSpecies}) => {
 							alt={evolution.chain.evolves_to[0].evolves_to[0].species.name}
 							className="w-2/6 h-full"/>
 					</div>
+					}
 				</div>}
 			</>
 		

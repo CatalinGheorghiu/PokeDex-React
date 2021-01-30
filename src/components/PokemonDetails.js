@@ -11,20 +11,18 @@ import Stats                 from "./stats/Stats";
 import Evolution             from "./stats/Evolution";
 
 const PokemonDetails = ({sortedPokemonDetails}) => {
-	// console.log(sortedPokemonDetails);
+	// console.log(sortedPokemonDetails.species);
 	const [pokemonSpecies, setPokemonSpecies] = useState(null);
 	const [menu, setMenu] = useState("about");
-	// console.log(pokemonSpecies);
+	
 	
 	useEffect(() => {
 		(async () => {
-			if (sortedPokemonDetails) {
-				const result = await fetch(sortedPokemonDetails.species.url);
-				const data = await result.json();
-				setPokemonSpecies(data);
-			}
+			const result = await fetch(sortedPokemonDetails.species.url);
+			const data = await result.json();
+			setPokemonSpecies(data);
 		})();
-	}, [sortedPokemonDetails, sortedPokemonDetails.species.url]);
+	}, [sortedPokemonDetails.species.url]);
 	
 	
 	return (
@@ -80,13 +78,6 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 								>Evolution
 								</button>
 							</li>
-							{/*<li>*/}
-							{/*	<button*/}
-							{/*		onClick={() => setMenu("moves")}*/}
-							{/*		className=" focus:outline-none focus:text-blue-500 focus:underline p-1 "*/}
-							{/*	>Moves*/}
-							{/*	</button>*/}
-							{/*</li>*/}
 						</ul>
 						
 						{menu === "about" && pokemonSpecies &&
@@ -98,11 +89,6 @@ const PokemonDetails = ({sortedPokemonDetails}) => {
 						{menu === "stats" && pokemonSpecies &&
 						<Stats pokemonSpecies={pokemonSpecies}
 						       sortedPokemonDetails={sortedPokemonDetails}/>}
-						{/*{menu === "moves" && pokemonSpecies &&*/}
-						{/*<Moves pokemonSpecies={pokemonSpecies}*/}
-						{/*       sortedPokemonDetails={sortedPokemonDetails}/>}*/}
-					
-					
 					</div>
 				
 				

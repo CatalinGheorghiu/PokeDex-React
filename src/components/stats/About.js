@@ -6,8 +6,6 @@ import {
 } from "../../helpers/helpers";
 
 const About = ({pokemonSpecies, sortedPokemonDetails}) => {
-	// console.log(pokemonSpecies);
-	// console.log(sortedPokemonDetails);
 	
 	return (
 		<div className="m-3">

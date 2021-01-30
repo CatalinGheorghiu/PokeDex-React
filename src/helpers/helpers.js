@@ -64,7 +64,6 @@ export const selectColor = (arr) => {
 };
 
 export const backgroundImage = (item) => {
-	console.log(item);
 	if (item.sprites.other["official-artwork"]["front_default"] !== null) {
 		return item.sprites.other["official-artwork"]["front_default"];
 	} else {

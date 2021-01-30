@@ -19,6 +19,7 @@ const App = () => {
 	const [sortPokemons, setSortPokemons] = useState();
 	const [sortedPokemonDetails, setSortedPokemonDetails] = useState("");
 	
+
 	
 	const showAllPokemons = () => {
 		setLoading(true);
@@ -58,11 +59,13 @@ const App = () => {
 	
 	const selectedPokemon = (sortPokemons) => {
 		if (sortPokemons !== null) {
+			setLoading(true);
 			setSortPokemons(sortPokemons);
 			setTimeout(() => {
 				setShowSortedPokemon(true);
 				setShowNavbar(false);
-			}, 100);
+				setLoading(false);
+			}, 1000);
 			
 			setShowPokemons(false);
 		} else if (showPokemons === false) {
