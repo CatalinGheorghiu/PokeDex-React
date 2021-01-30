@@ -11,7 +11,7 @@ import Stats                 from "./stats/Stats";
 import Evolution             from "./stats/Evolution";
 
 const PokemonDetails = ({sortedPokemonDetails}) => {
-	// console.log(sortedPokemonDetails.species);
+
 	const [pokemonSpecies, setPokemonSpecies] = useState(null);
 	const [menu, setMenu] = useState("about");
 	

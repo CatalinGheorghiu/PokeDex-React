@@ -19,7 +19,6 @@ const App = () => {
 	const [sortPokemons, setSortPokemons] = useState();
 	const [sortedPokemonDetails, setSortedPokemonDetails] = useState("");
 	
-
 	
 	const showAllPokemons = () => {
 		setLoading(true);
@@ -139,6 +138,7 @@ const App = () => {
 						allPokemons={allPokemons}
 						loading={loading}
 						loadingPokemons={loadingPokemons}
+						selectedPokemon={selectedPokemon}
 					/>}
 			</main>
 		</>

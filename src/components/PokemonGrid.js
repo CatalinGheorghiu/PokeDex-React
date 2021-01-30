@@ -10,10 +10,8 @@ const PokemonGrid = ({
 	                     pokemonDetails,
 	                     loadingPokemons,
 	                     allPokemons,
-	                     loading
+	                     loading,selectedPokemon
                      }) => {
-	
-	
 	
 	
 	return (
@@ -27,7 +25,9 @@ const PokemonGrid = ({
 				handleScroll={handleScroll}
 				displayButtons={displayButtons}
 				pokemonDetails={pokemonDetails} loading={loading}
-				loadingPokemons={loadingPokemons} allPokemons={allPokemons}/>}
+				loadingPokemons={loadingPokemons} allPokemons={allPokemons}
+				selectedPokemon={selectedPokemon}
+			/>}
 		
 		</>
 	

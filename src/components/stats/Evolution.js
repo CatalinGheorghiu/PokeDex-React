@@ -14,7 +14,7 @@ const Evolution = ({pokemonSpecies}) => {
 			})();
 		}, [pokemonSpecies, pokemonSpecies.evolution_chain.url]);
 		
-		console.log(evolution);
+		
 		return (
 			<>
 				{evolution && <div className="py-3">
