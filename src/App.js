@@ -2,11 +2,14 @@ import {useEffect, useState} from "react";
 import Navbar                from "./components/Navbar";
 import PokemonGrid           from "./components/PokemonGrid";
 import Loading               from "./components/Loading";
+import useFetch              from "./helpers/useFetch";
 
 const App = () => {
+	const {results: allPokemons} = useFetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1118", "");
+	console.log(allPokemons);
 	
 	const [pokemonDetails, setPokemonDetails] = useState([]);
-	const [allPokemons, setAllPokemons] = useState("");
+	// const [allPokemons, setAllPokemons] = useState("");
 	
 	const [showPokemons, setShowPokemons] = useState(false);
 	const [showSortedPokemon, setShowSortedPokemon] = useState(false);
@@ -87,18 +90,18 @@ const App = () => {
 		
 	}, [sortPokemons]);
 	
-	useEffect(() => {
-		(async () => {
-			try {
-				const results = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1118");
-				const data = await results.json();
-				setAllPokemons(data.results);
-			} catch (e) {
-			}
-		})();
-		
-		
-	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		try {
+	// 			const results = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1118");
+	// 			const data = await results.json();
+	// 			setAllPokemons(data.results);
+	// 		} catch (e) {
+	// 		}
+	// 	})();
+	//
+	//
+	// }, []);
 	
 	useEffect(() => {
 		(async () => {
