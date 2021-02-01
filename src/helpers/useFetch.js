@@ -15,7 +15,7 @@ function useFetch(url, initialValue) {
 	
 	useEffect(() => {
 		getDataFromAPI(url);
-	}, []);
+	}, [url]);
 	return data;
 }
 
